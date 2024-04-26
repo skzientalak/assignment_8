@@ -1,0 +1,16 @@
+---
+title: "Assignment_8"
+author: "Szymon Zientalak"
+format: html
+editor: visual
+---
+
+## Fallout: New Vegas 
+
+![New Vegas Logo](new_vegas_logo.jpg){fig-align="center"}
+# Introduction
+
+"Fallout: New Vegas" is a post-apocalyptic role-playing video game developed by Obsidian Entertainment and released in 2010. Set in the Mojave Wasteland, encompassing parts of Nevada, California, and Arizona, the game revolves around the conflict among the New California Republic, Caesar's Legion, and the enigmatic Mr. House for control of New Vegas. Players control the Courier, who after being left for dead, becomes entangled in this regional power struggle, influencing the outcome through choices and interactions. The game features tactical combat, including a strategic targeting system known as V.A.T.S., and is noted for its deep narrative and player-driven story with multiple endings. Despite initial technical issues, it is celebrated for its detailed world and complex characters.
+
+
+
