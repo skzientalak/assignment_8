@@ -5,12 +5,65 @@ format: html
 editor: visual
 ---
 
-## Fallout: New Vegas 
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(ggpubr)
+library(dplyr)
+library(lubridate)
+```
+
+## Fallout: New Vegas
 
 ![New Vegas Logo](new_vegas_logo.jpg){fig-align="center"}
-# Introduction
+<br><br>
+Introduction
 
 "Fallout: New Vegas" is a post-apocalyptic role-playing video game developed by Obsidian Entertainment and released in 2010. Set in the Mojave Wasteland, encompassing parts of Nevada, California, and Arizona, the game revolves around the conflict among the New California Republic, Caesar's Legion, and the enigmatic Mr. House for control of New Vegas. Players control the Courier, who after being left for dead, becomes entangled in this regional power struggle, influencing the outcome through choices and interactions. The game features tactical combat, including a strategic targeting system known as V.A.T.S., and is noted for its deep narrative and player-driven story with multiple endings. Despite initial technical issues, it is celebrated for its detailed world and complex characters.
 
+
+## Stats
+
+# Review Scores
+
+The graph below shows review scores for different publications. If a publication had a review for both the XBOX and PC release, only the PC review was taken into consideration as the games have a tiny presence on consoles. All review scores have been standardized to a 10 point scale.
+<br><br>
+
+
+```{r, echo=FALSE,include=FALSE}
+scores <- read.csv("review_scores.csv", sep = ";")
+scores <- data.frame(scores)
+```
+
+```{r, echo=FALSE}
+score_bar <- ggplot(data = scores, aes(x = Publication, y = Score, fill = Publication)) +
+  geom_col() + 
+  geom_text(aes(label = Score), vjust = 1.1, color = "white", size = 4.5) +
+  labs(title = "Publication Scores", x = "Publication", y = "Score") +
+  theme_pubr() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_y_continuous(limits = c(0, max(scores$Score)+1))
+
+score_bar
+```
+
+# Active Player Count
+
+The following plot shows the peak monthly active player count for the entire lifetime of the game, on PC. The recent jump in player count comes from renewed interest in the games by the general public, because of the release of the TV show "Fallout", on Amazon Prime.
+
+```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
+players <- read.csv("active_players.csv", sep = ";")
+players$Month <- myd(paste(players$Month, "1"))
+players$Peak.active.players <- as.numeric(gsub(",", "", players$Peak.active.players))
+```
+
+```{r, echo=FALSE}
+ggplot(data = players, aes(x = Month, y = Peak.active.players)) +
+  geom_line() +
+  geom_point(color="red") +
+  labs(title = "Trend of Peak Active Players", x = "Month", y = "Number of Players") +
+  theme_pubclean() +
+  scale_x_date(date_labels = "%B %Y", date_breaks = "1 year") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 
