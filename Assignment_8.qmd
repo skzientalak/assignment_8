@@ -14,20 +14,15 @@ library(lubridate)
 
 ## Fallout: New Vegas
 
-![New Vegas Logo](new_vegas_logo.jpg){fig-align="center"}
-<br><br>
-Introduction
+![New Vegas Logo](new_vegas_logo.jpg){fig-align="center"} <br><br> Introduction
 
 "Fallout: New Vegas" is a post-apocalyptic role-playing video game developed by Obsidian Entertainment and released in 2010. Set in the Mojave Wasteland, encompassing parts of Nevada, California, and Arizona, the game revolves around the conflict among the New California Republic, Caesar's Legion, and the enigmatic Mr. House for control of New Vegas. Players control the Courier, who after being left for dead, becomes entangled in this regional power struggle, influencing the outcome through choices and interactions. The game features tactical combat, including a strategic targeting system known as V.A.T.S., and is noted for its deep narrative and player-driven story with multiple endings. Despite initial technical issues, it is celebrated for its detailed world and complex characters.
-
 
 ## Stats
 
 # Review Scores
 
-The graph below shows review scores for different publications. If a publication had a review for both the XBOX and PC release, only the PC review was taken into consideration as the games have a tiny presence on consoles. All review scores have been standardized to a 10 point scale.
-<br><br>
-
+The graph below shows review scores for different publications. If a publication had a review for both the XBOX and PC release, only the PC review was taken into consideration as the games have a tiny presence on consoles. All review scores have been standardized to a 10 point scale. <br><br>
 
 ```{r, echo=FALSE,include=FALSE}
 scores <- read.csv("review_scores.csv", sep = ";")
@@ -48,7 +43,7 @@ score_bar
 
 # Active Player Count
 
-The following plot shows the peak monthly active player count for the entire lifetime of the game, on PC. The recent jump in player count comes from renewed interest in the games by the general public, because of the release of the TV show "Fallout", on Amazon Prime.
+The following plot shows the peak monthly active player count for the entire lifetime of the game, on PC. 
 
 ```{r, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
 players <- read.csv("active_players.csv", sep = ";")
@@ -66,4 +61,27 @@ ggplot(data = players, aes(x = Month, y = Peak.active.players)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+<br>
+
+# Peak player counts
+
+There are a few peaks in player numbers visible to the naked eye. The first one occurred in **October 2010**, which was the date the game released. Another one happened in **November 2015** and was caused by the launch of a new mainline title in the series - Fallout 4. Lastly the most recent observable peak happened in **April 2024** and was caused by the release of the Fallout TV show, on Amazon Prime, which renewed interest in the game series from long time players and exposed new audiences to the universe.
+
+Peak player count for the initial release was **51 038** and the change in peak from the date of initial release, to the release of Fallout 4 is as follows: 
+
+```{r}
+peaks <- sort(players$Peak.active.players, decreasing = TRUE)[1:3]
+
+delta1 <- peaks[3] - peaks[1]
+delta1
+```
+
+While the  number of peak active players at the time of the release of Fallout 4 was **33 656** and the change between this peak and the release of the Fallout TV show was: 
+
+```{r}
+delta2 <- peaks[2] - peaks[3]
+delta2
+```
+
+Which resulted in total peak players at this time to amount to **45 134** players.
 
